@@ -294,9 +294,9 @@ fi
 STATUS_FILE="$(cat "${CHECK_LOGFILE}")"
 
 # Status file is valid?
-ALL_KEYS="^success= ^lastbak= ^message= ^msg_dbs= ^msg_ign= ^msg_meg= ^msg_sec= ^opt_log= ^opt_com= ^opt_enc= ^opt_del= ^del_time="
+ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*="
 for w in $ALL_KEYS; do
-	if ! grep "$w" "${CHECK_LOGFILE}" > /dev/null 2>&1 ; then
+	if ! grep -E "$w" "${CHECK_LOGFILE}" > /dev/null 2>&1 ; then
 		echo "${CHECK_LOGFILE} is corrupt. Missing: \"${w}\""
 		exit $EXIT_UNKNOWN
 	fi
