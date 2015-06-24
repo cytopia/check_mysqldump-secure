@@ -11,5 +11,8 @@
 			"homepage": "https://github.com/cytopia",
 			"role": "Developer"
 		}
-	]
+	],
+	"suggest": {
+		"cytopia/mysqldump-secure": "Secure mysqldump script with encryption, compression, logging and blacklisting"
+	}
 }
