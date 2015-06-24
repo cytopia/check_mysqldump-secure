@@ -1,0 +1,76 @@
+; filetype: ini
+; This is an example logfile used for check_mysqldump-secure.
+; This file is always completely overwritten after each dump
+
+
+
+; This section descripes the status
+; of the last mysqldump
+[state]
+
+; Success state of the mysqldump
+; 0: Success
+; 1: Warning
+; 2: Error
+; 3: Unknown
+success = 0
+
+; Timestamp of last mysqldump
+lastbak = 1434996000
+
+; Optional message of last mysqldump
+message =
+
+
+
+; This section descripes the options
+; used for the last mysqldump
+[options]
+
+; The last mysqldump logged to file?
+; 0: No
+; 1: Yes
+opt_log = 0
+
+; The last mysqldump used compression?
+; 0: No
+; 1: Yes
+opt_com = 0
+
+; The last mysqldump used encryption?
+; 0: No
+; 1: Yes
+opt_enc = 0
+
+; The last mysqldump used tmpwatch to delete
+; older files?
+; 0: No
+; 1: Yes
+opt_del = 0
+
+
+
+
+; This section gives additional information
+; about the last dump
+[messages]
+
+; How many databases have been dumped?
+msg_dbs = 20
+
+; How many databases have been skipped/ignored?
+msg_ign = 3
+
+; Total size of dumped databases in Megabytes
+msg_meg = 1025
+
+; Total time taken for the whole dump
+msg_sec = 43
+
+
+
+; This section gives additional information
+; about tmpwatch actions (if enabled)
+; TODO: Currently not implemented
+[tmpwatch]
+del_time = 0
