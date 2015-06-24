@@ -13,6 +13,6 @@
 		}
 	],
 	"require": {
-		"cytopia/mysqldump-secure": "Secure mysqldump script with encryption, compression, logging and blacklisting"
+		"cytopia/mysqldump-secure": "dev-master"
 	}
 }
