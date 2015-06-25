@@ -1,6 +1,4 @@
 # check_mysqldump-secure
-Nagios Plugin to monitor mysqldump database backups
-
 
 Nagios Plugin to monitor the state of mysql database dumps. The following states are reported:
 * Did every database dump correctly?
