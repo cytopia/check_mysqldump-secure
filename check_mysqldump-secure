@@ -47,6 +47,21 @@ isint() {
 	printf '%d' "$1" >/dev/null 2>&1 && return 0 || return 1;
 }
 
+# Multiply two numbers
+mul() {
+#	if command -v bc 2> /dev/null 2>&1; then
+#		echo "${1}+${2} | $(which bc)"
+#	else
+		echo  | awk -v "a=${1}" -v "b=${2}" '{print a * b}'
+#	fi
+}
+
+round() {
+	echo | awk -v "a=${1}" 'BEGIN{printf "%3.0f\n", a}'
+}
+
+
+
 ############################################################
 # Date Functions
 ############################################################
@@ -394,6 +409,13 @@ if [ -n "$CHECK_ENCRYPTED" ] && [ "${STATUS_OPT_ENC}" != "1" ]; then
 fi
 
 
+
+#### Performance Data
+# TODO: Deleted Databases: Add tmpwatch status
+PERFORMANCE="'Execution Time'=${STATUS_MSG_SEC}s;;;; 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;; 'Dumped Databases'=${STATUS_MSG_DBS} 'Ignored Databases'=${STATUS_MSG_IGN} 'Tmpwatch Deleted Backups'=0"
+
+
+#### Output
 if [ "$STATUS_SUCCESS" = "0" ]; then
 	ERROR="${ERROR}$(printf "[OK]: Dumped %s/%s dbs (%sMB) (took: %ss) %s ago. " "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 elif [ "$STATUS_SUCCESS" = "1" ]; then
@@ -409,5 +431,5 @@ else
 	ERRNO=$EXIT_ERR
 fi
 
-echo "${ERROR}${STATUS_MESSAGE}"
+echo "${ERROR}${STATUS_MESSAGE} | ${PERFORMANCE}"
 exit $ERRNO
