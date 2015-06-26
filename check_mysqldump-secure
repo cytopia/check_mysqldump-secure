@@ -412,7 +412,7 @@ fi
 
 #### Performance Data
 # TODO: Deleted Databases: Add tmpwatch status
-PERFORMANCE="'total time'=${STATUS_MSG_SEC}s 'total size'=$( mul "$(round ${STATUS_MSG_MEG})" 1048576)bytes 'dumped databases'=${STATUS_MSG_DBS} 'ignored databases'=${STATUS_MSG_IGN} 'deleted databases'=0"
+PERFORMANCE="'total time'=${STATUS_MSG_SEC}s 'total size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )bytes 'dumped databases'=${STATUS_MSG_DBS} 'ignored databases'=${STATUS_MSG_IGN} 'deleted databases'=0"
 
 
 #### Output
