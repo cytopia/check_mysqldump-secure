@@ -394,6 +394,13 @@ if [ -n "$CHECK_ENCRYPTED" ] && [ "${STATUS_OPT_ENC}" != "1" ]; then
 fi
 
 
+
+#### Performance Data
+# TODO: Deleted Databases: Add tmpwatch status
+PERFORMANCE="'total time'=${STATUS_MSG_SEC}s 'total size'=${STATUS_MSG_MEG}MB 'dumped databases'=${STATUS_MSG_DBS} 'ignored databases'=${STATUS_MSG_IGN} 'deleted databases'=0"
+
+
+#### Output
 if [ "$STATUS_SUCCESS" = "0" ]; then
 	ERROR="${ERROR}$(printf "[OK]: Dumped %s/%s dbs (%sMB) (took: %ss) %s ago. " "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 elif [ "$STATUS_SUCCESS" = "1" ]; then
@@ -409,5 +416,5 @@ else
 	ERRNO=$EXIT_ERR
 fi
 
-echo "${ERROR}${STATUS_MESSAGE}"
+echo "${ERROR}${STATUS_MESSAGE} | ${PERFORMANCE}"
 exit $ERRNO
