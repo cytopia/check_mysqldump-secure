@@ -94,6 +94,7 @@ _time_ago() {
 	echo "${hrs_due}h ${min_due}m"
 }
 
+
 # Return system independent current timestamp
 _timestamp_now() {
 	echo "$(_date +%s)"
@@ -383,6 +384,11 @@ ERRNO=0
 ERROR=""
 hours_ago=$(_time_ago "$(_timestamp_now)" "$STATUS_LASTBAK" )
 
+sec_ago=$( expr "$(_timestamp_now)" - $STATUS_LASTBAK  )
+sec_ago_crit=$( expr $CHECK_TIME \* 3600 )
+
+
+
 #### Warning Levels
 if [ -n "$CHECK_COMPRESSED" ] && [ "${STATUS_OPT_COM}" != "1" ]; then
 	ERRNO=$EXIT_WARN
@@ -412,7 +418,7 @@ fi
 
 #### Performance Data
 # TODO: Deleted Databases: Add tmpwatch status
-PERFORMANCE="'Execution Time'=${STATUS_MSG_SEC}s;;;; 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;; 'Dumped Databases'=${STATUS_MSG_DBS} 'Ignored Databases'=${STATUS_MSG_IGN} 'Tmpwatch Deleted Backups'=0"
+PERFORMANCE="'Time Ago'=${sec_ago}s;${sec_ago_crit};${sec_ago_crit};0;${sec_ago_crit} Execution Time'=${STATUS_MSG_SEC}s;;;; 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;; 'Dumped Databases'=${STATUS_MSG_DBS} 'Ignored Databases'=${STATUS_MSG_IGN} 'Tmpwatch Deleted Backups'=0"
 
 
 #### Output
