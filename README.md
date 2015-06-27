@@ -22,3 +22,18 @@ Additional information is displayed. Such as:
 * How many megabytes have been dumped
 
 It is planned to included dumping time and size into performance data, so you have a nice overview of when and how those two values have increased.
+
+# Nagios / Icinga Integration
+
+## Monitoring Data
+![OK](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_ok.png)
+![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error.png)
+
+
+## Performance Date
+
+![Time](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_time.png)
+![Size](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_size.png)
+![Total](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_total_dbs.png)
+![Ignored](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_ignored_dbs.png)
+![Tmpwatch](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_tmpwatch_deletions.png)
