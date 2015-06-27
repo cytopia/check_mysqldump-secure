@@ -94,6 +94,20 @@ _time_ago() {
 	echo "${hrs_due}h ${min_due}m"
 }
 
+_hours_ago() {
+	timestamp1="${1}"
+	timestamp2="${2}"
+
+	sec_due=$( expr $timestamp1 - $timestamp2 )
+	min_due=$( expr $sec_due / 60 )
+	min_due=$( expr $min_due % 60 )
+	hrs_due=$( expr $sec_due / 3600 )
+
+	float="$( echo | awk -v "min=${min_due}" -v "hrs=${hrs_due}" '{ print min / 60 + hrs  }' | awk '{ printf "%3.1f\n", $1  }' )"
+	echo "${float}"
+
+}
+
 
 # Return system independent current timestamp
 _timestamp_now() {
@@ -418,9 +432,12 @@ if [ -n "$CHECK_ENCRYPTED" ] && [ "${STATUS_OPT_ENC}" != "1" ]; then
 fi
 
 
+hours_ago_norm="$( _hours_ago "$(_timestamp_now)" "${STATUS_LASTBAK}" )"
+hours_ago_crit="${CHECK_TIME}"
 
 #### Performance Data
-PERFORMANCE="'Time Ago'=${sec_ago}s;${sec_ago_crit};${sec_ago_crit};0;${sec_ago_crit}"
+#PERFORMANCE="'Time Ago'=${sec_ago}s;${sec_ago_crit};${sec_ago_crit};0;${sec_ago_crit}"
+PERFORMANCE="'Hours Ago'=${hours_ago_norm}hours;${hours_ago_crit};${hours_ago_crit};0;${hours_ago_crit}"
 PERFORMANCE="${PERFORMANCE} 'Execution Time'=${STATUS_MSG_SEC}s;;;;"
 PERFORMANCE="${PERFORMANCE} 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;;"
 PERFORMANCE="${PERFORMANCE} 'Dumped Databases'=${STATUS_MSG_DBS};;;;"
