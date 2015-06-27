@@ -27,7 +27,11 @@ It is planned to included dumping time and size into performance data, so you ha
 
 ## Monitoring Data
 ![OK](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_ok.png)
+![Unknown](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_unknown.png)
 ![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error.png)
+
+## Log
+![Log](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/log.png)
 
 
 ## Performance Date
