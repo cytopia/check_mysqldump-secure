@@ -32,6 +32,7 @@ It is planned to included dumping time and size into performance data, so you ha
 
 ## Performance Date
 
+![Ago](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_hours_ago.png)
 ![Time](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_time.png)
 ![Size](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_size.png)
 ![Total](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_total_dbs.png)
