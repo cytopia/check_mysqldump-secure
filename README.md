@@ -21,13 +21,20 @@ Additional information is displayed. Such as:
 * How long did it take to dump everything
 * How many megabytes have been dumped
 
-It is planned to included dumping time and size into performance data, so you have a nice overview of when and how those two values have increased.
+# How to use it
+You will either have to generate a [logfile](mysqldump-secure.nagios.log) that is parseable by the [check_mysqldump-secure](check_mysqldump-secure) script (see [mysqldump-secure.nagios.log](mysqldump-secure.nagios.log) for explanation) or you can use the already existing tool to dump MySQL databases in a secure way, which supports Nagios log output.
+[mysqldump-secure](https://github.com/cytopia/mysqldump-secure)
+
 
 # Nagios / Icinga Integration
 
 ## Monitoring Data
 ![OK](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_ok.png)
+![Unknown](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_unknown.png)
 ![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error.png)
+
+## Log
+![Log](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/log.png)
 
 
 ## Performance Date
