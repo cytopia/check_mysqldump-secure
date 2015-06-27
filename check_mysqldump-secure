@@ -418,7 +418,7 @@ fi
 
 #### Performance Data
 # TODO: Deleted Databases: Add tmpwatch status
-PERFORMANCE="'Time Ago'=${sec_ago}s;${sec_ago_crit};${sec_ago_crit};0;${sec_ago_crit} 'Execution Time'=${STATUS_MSG_SEC}s;;;; 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;; 'Dumped Databases'=${STATUS_MSG_DBS} 'Ignored Databases'=${STATUS_MSG_IGN} 'Tmpwatch Deleted Backups'=0"
+PERFORMANCE="'Time Ago'=${sec_ago}s;${sec_ago_crit};${sec_ago_crit};0;${sec_ago_crit} 'Execution Time'=${STATUS_MSG_SEC}s;;;; 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;; 'Dumped Databases'=${STATUS_MSG_DBS} 'Ignored Databases'=${STATUS_MSG_IGN} 'Tmpwatch Deletions'=0"
 
 
 #### Output
