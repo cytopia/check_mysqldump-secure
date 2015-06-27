@@ -111,8 +111,10 @@ ini_get() {
 	key="${2}"
 
 	# TODO: Only replace first occurance of '='
-	val="$(echo "${str}" | grep -E "^\s*${key}\s*=" | sed 's/=/ /' | awk '{ for (i=2; i<=NF; i++) print $i }')"
-	echo "${val}"
+	val="$(echo "${str}" | grep -E "^\s*${key}\s*=" | sed 's/=/ /' | awk '{ for (i=2; i<NF; i++) printf $i " "; print $NF }')"
+
+	# No quotes (do not evaluate special characters like \n or \t)
+	echo ${val}
 }
 
 
@@ -421,26 +423,27 @@ fi
 PERFORMANCE="'Time Ago'=${sec_ago}s;${sec_ago_crit};${sec_ago_crit};0;${sec_ago_crit}"
 PERFORMANCE="${PERFORMANCE} 'Execution Time'=${STATUS_MSG_SEC}s;;;;"
 PERFORMANCE="${PERFORMANCE} 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;;"
-PERFORMANCE="${PERFORMANCE} 'Dumped Databases'=${STATUS_MSG_DBS}"
-PERFORMANCE="${PERFORMANCE} 'Ignored Databases'=${STATUS_MSG_IGN}"
-PERFORMANCE="${PERFORMANCE} 'Tmpwatch Deletions'=${STATUS_MSG_DEL}"
+PERFORMANCE="${PERFORMANCE} 'Dumped Databases'=${STATUS_MSG_DBS};;;;"
+PERFORMANCE="${PERFORMANCE} 'Ignored Databases'=${STATUS_MSG_IGN};;;;"
+PERFORMANCE="${PERFORMANCE} 'Tmpwatch Deletions'=${STATUS_MSG_DEL};;;;"
 
 
 #### Output
 if [ "$STATUS_SUCCESS" = "0" ]; then
-	ERROR="${ERROR}$(printf "[OK]: Dumped %s/%s dbs (%sMB) (took: %ss) %s ago. " "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[OK]: Dumped %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 elif [ "$STATUS_SUCCESS" = "1" ]; then
 	if [ $ERRNO -lt $EXIT_ERR ]; then
 		ERRNO=$EXIT_WARN
 	fi
-	ERROR="${ERROR}$(printf "[Warn]: Dumped with warnings: %s/%s dbs (%sMB) (took: %ss) %s ago. " "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[Warn]: Dumped with warnings: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 elif [ "$STATUS_SUCCESS" = "2" ]; then
-	ERROR="${ERROR}$(printf "[Err]: Dumped with errors: %s/%s dbs (%sMB) (took: %ss) %s ago. " "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[Err]: Dumped with errors: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 	ERRNO=$EXIT_ERR
 else
-	ERROR="${ERROR}$(printf "[Unknown]: Dumped with unknown: %s/%s dbs (%sMB) (took: %ss) %s ago. " "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[Unknown]: Dumped with unknown: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 	ERRNO=$EXIT_ERR
 fi
 
-echo "${ERROR}${STATUS_MESSAGE} | ${PERFORMANCE}"
+printf "%s | %s\n%s\n" "${ERROR}" "${PERFORMANCE}" "${STATUS_MESSAGE}"
 exit $ERRNO
+
