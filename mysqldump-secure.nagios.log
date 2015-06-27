@@ -67,7 +67,8 @@ msg_meg = 1025
 ; Total time taken for the whole dump
 msg_sec = 43
 
-
+; Total number of tmpwatch deletions
+msg_del = 118
 
 ; This section gives additional information
 ; about tmpwatch actions (if enabled)
