@@ -22,6 +22,10 @@ lastbak = 1434996000
 message =
 
 
+; Space separated list of required, but not dumped databases.
+; check_mysqldump will throw an error, if there is one db
+; in this list.
+missing = 
 
 ; This section descripes the options
 ; used for the last mysqldump

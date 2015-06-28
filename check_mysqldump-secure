@@ -15,9 +15,9 @@
 ################################################################################
 INFO_AUTHOR="Patrick Plocke <patrick@plocke.de>"
 INFO_GPGKEY="0x28BF179F"
-INFO_DATE="2015-06-22"
+INFO_DATE="2015-06-28"
 INFO_LICENSE="MIT"
-INFO_VERSION="0.1"
+INFO_VERSION="0.3"
 
 # Check for performance data:
 # http://nagios.sourceforge.net/docs/3_0/pluginapi.html
@@ -326,7 +326,7 @@ fi
 STATUS_FILE="$(cat "${CHECK_LOGFILE}")"
 
 # Status file is valid?
-ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*msg_del\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*="
+ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*missing\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*msg_del\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*="
 for w in $ALL_KEYS; do
 	if ! grep -E "$w" "${CHECK_LOGFILE}" > /dev/null 2>&1 ; then
 		echo "${CHECK_LOGFILE} is corrupt. Missing: \"${w}\""
@@ -338,6 +338,7 @@ done
 STATUS_SUCCESS="$(ini_get "${STATUS_FILE}" "success")"
 STATUS_LASTBAK="$(ini_get "${STATUS_FILE}" "lastbak")"
 STATUS_MESSAGE="$(ini_get "${STATUS_FILE}" "message")"
+STATUS_MISSING="$(ini_get "${STATUS_FILE}" "missing")"
 # Info Messages
 STATUS_MSG_DBS="$(ini_get "${STATUS_FILE}" "msg_dbs")"
 STATUS_MSG_IGN="$(ini_get "${STATUS_FILE}" "msg_ign")"
@@ -427,6 +428,12 @@ if [ -n "$CHECK_ENCRYPTED" ] && [ "${STATUS_OPT_ENC}" != "1" ]; then
 	ERRNO=$EXIT_ERR
 	ERROR="${ERROR}[Err]: Encryption disabled. "
 fi
+
+# Check missing databases
+for db in ${STATUS_MISSING}; do
+	ERRNO=$EXIT_ERR
+	ERROR="${ERROR}[Err]: \"${db}\" not dumped. "
+done
 
 
 hours_ago_norm="$( _hours_ago "$(_timestamp_now)" "${STATUS_LASTBAK}" )"
