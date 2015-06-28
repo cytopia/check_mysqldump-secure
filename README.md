@@ -32,6 +32,7 @@ You will either have to generate a [logfile](mysqldump-secure.nagios.log) that i
 ![OK](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_ok.png)
 ![Unknown](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_unknown.png)
 ![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error.png)
+![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error2.png)
 
 ## Log
 ![Log](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/log.png)
