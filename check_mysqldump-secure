@@ -124,8 +124,10 @@ ini_get() {
 	str="${1}"
 	key="${2}"
 
+	val="$(echo "${str}" | grep -E "^\s*${key}\s*=" | sed "s/^\s*${key}\s*=//")"
+
 	# TODO: Only replace first occurance of '='
-	val="$(echo "${str}" | grep -E "^\s*${key}\s*=" | sed 's/=/ /' | awk '{ for (i=2; i<NF; i++) printf $i " "; print $NF }')"
+#val="$(echo "${str}" | grep -E "^\s*${key}\s*=" | sed 's/=/ /' | awk '{ for (i=2; i<NF; i++) printf $i " "; print $NF }')"
 
 	# No quotes (do not evaluate special characters like \n or \t)
 	echo ${val}
@@ -350,7 +352,6 @@ STATUS_OPT_LOG="$(ini_get "${STATUS_FILE}" "opt_log")"
 STATUS_OPT_COM="$(ini_get "${STATUS_FILE}" "opt_com")"
 STATUS_OPT_ENC="$(ini_get "${STATUS_FILE}" "opt_enc")"
 STATUS_OPT_DEL="$(ini_get "${STATUS_FILE}" "opt_del")"
-
 
 
 ################################################################################
