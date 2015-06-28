@@ -15,6 +15,7 @@ Nagios Plugin to monitor the state of MySQL database backups. The following stat
 * If compression is required, was the dump compressed?
 * If logging is required, was the dump logged?
  
+
 Additional information is displayed. Such as:
 * How many databases dumped
 * How many databases skipped
