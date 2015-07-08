@@ -1,7 +1,7 @@
 Version 0.4
 -----------
 
-- [Enh]		Added additional output for nagios >=3
+- [Enh]		Added long output for nagios >=3
 
 
 Version 0.3
@@ -23,4 +23,4 @@ Version 0.2
 Version 0.1
 -----------
 
--
+- [XXX]		Initial working version
