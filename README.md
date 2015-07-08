@@ -35,6 +35,11 @@ You will either have to generate a [logfile](mysqldump-secure.nagios.log) that i
 ![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error.png)
 ![Error](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/overview_error2.png)
 
+## Extended Information
+This is only applicable to nagios >= 3
+![OK](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/additional_information.png)
+
+
 ## Log
 ![Log](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/log.png)
 
