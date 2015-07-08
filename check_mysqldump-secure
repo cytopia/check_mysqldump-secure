@@ -2,9 +2,9 @@
 #
 # @author    Patrick Plocke <patrick@plocke.de>
 # @gpg key   0x28BF179F
-# @date      2015-06-22-
+# @date      2015-07-08-
 # @licencse  MIT http://opensource.org/licenses/MIT
-# @version   0.1
+# @version   0.3
 
 
 
@@ -15,7 +15,7 @@
 ################################################################################
 INFO_AUTHOR="Patrick Plocke <patrick@plocke.de>"
 INFO_GPGKEY="0x28BF179F"
-INFO_DATE="2015-06-28"
+INFO_DATE="2015-07-08"
 INFO_LICENSE="MIT"
 INFO_VERSION="0.3"
 
