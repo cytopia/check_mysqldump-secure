@@ -448,6 +448,13 @@ PERFORMANCE="${PERFORMANCE} 'Dumped Databases'=${STATUS_MSG_DBS};;;;"
 PERFORMANCE="${PERFORMANCE} 'Ignored Databases'=${STATUS_MSG_IGN};;;;"
 PERFORMANCE="${PERFORMANCE} 'Tmpwatch Deletions'=${STATUS_MSG_DEL};;;;"
 
+#### Additional Long output for Nagios >=3
+ADDITIONAL="Message: ${STATUS_MESSAGE}\n"
+ADDITIONAL="${ADDITIONAL}Logging:     ${STATUS_OPT_LOG}\n"
+ADDITIONAL="${ADDITIONAL}Compression: ${STATUS_OPT_COM}\n"
+ADDITIONAL="${ADDITIONAL}Encryption:  ${STATUS_OPT_ENC}\n"
+ADDITIONAL="${ADDITIONAL}TmpWatch Del:${STATUS_OPT_DEL}\n"
+
 
 #### Output
 if [ "$STATUS_SUCCESS" = "0" ]; then
@@ -465,6 +472,6 @@ else
 	ERRNO=$EXIT_ERR
 fi
 
-printf "%s | %s\n%s\n" "${ERROR}" "${PERFORMANCE}" "${STATUS_MESSAGE}"
+printf "%s | %s\n%s\n" "${ERROR}" "${PERFORMANCE}" "${ADDITIONAL}"
 exit $ERRNO
 

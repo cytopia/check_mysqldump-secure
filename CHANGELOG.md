@@ -1,6 +1,7 @@
 Version 0.4
 -----------
 
+- [Enh]		Added additional output for nagios >=3
 
 
 Version 0.3
