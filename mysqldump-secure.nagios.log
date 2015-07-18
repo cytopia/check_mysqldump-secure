@@ -79,3 +79,19 @@ msg_del = 118
 ; TODO: Currently not implemented
 [tmpwatch]
 del_time = 0
+
+
+; This setion gives additional information
+; in form of a list of dumped, failed and
+; ignored databases
+[stats]
+
+; list of dumped databases
+db_dumped = 
+
+; list of ignored/skipped databases
+db_ignored = 
+
+; list of failed databases
+db_error
+
