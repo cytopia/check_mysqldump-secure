@@ -2,7 +2,7 @@
 	"name": "cytopia/check_mysqldump-secure",
 	"description": "Nagios Plugin to monitor mysqldump database backups.",
 	"type": "library",
-	"keywords": ["nagios", "mysqldump", "export", "dump", "mysql", "database"],
+	"keywords": ["nagios", "icinga", "mysqldump", "export", "dump", "mysql", "database"],
 	"homepage": "https://github.com/cytopia/check_mysqldump-secure",
 	"license": "MIT",
 	"authors": [
