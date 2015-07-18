@@ -4,7 +4,7 @@
 # @gpg key   0x28BF179F
 # @date      2015-07-08-
 # @licencse  MIT http://opensource.org/licenses/MIT
-# @version   0.4
+# @version   0.5
 
 
 
@@ -17,7 +17,7 @@ INFO_AUTHOR="Patrick Plocke <patrick@plocke.de>"
 INFO_GPGKEY="0x28BF179F"
 INFO_DATE="2015-07-08"
 INFO_LICENSE="MIT"
-INFO_VERSION="0.4"
+INFO_VERSION="0.5"
 
 # Check for performance data:
 # http://nagios.sourceforge.net/docs/3_0/pluginapi.html
