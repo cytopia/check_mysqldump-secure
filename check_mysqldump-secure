@@ -328,7 +328,7 @@ fi
 STATUS_FILE="$(cat "${CHECK_LOGFILE}")"
 
 # Status file is valid?
-ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*missing\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*msg_del\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*="
+ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*missing\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*msg_del\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*= ^\s*db_dumped\s*= ^\s*db_error\s*= ^\s*db_ignored\s*="
 for w in $ALL_KEYS; do
 	if ! grep -E "$w" "${CHECK_LOGFILE}" > /dev/null 2>&1 ; then
 		echo "${CHECK_LOGFILE} is corrupt. Missing: \"${w}\""
@@ -352,6 +352,10 @@ STATUS_OPT_LOG="$(ini_get "${STATUS_FILE}" "opt_log")"
 STATUS_OPT_COM="$(ini_get "${STATUS_FILE}" "opt_com")"
 STATUS_OPT_ENC="$(ini_get "${STATUS_FILE}" "opt_enc")"
 STATUS_OPT_DEL="$(ini_get "${STATUS_FILE}" "opt_del")"
+# Database information (list)
+STATUS_DB_DUMPED="$(ini_get "${STATUS_FILE}" "db_dumped")"
+STATUS_DB_ERROR="$(ini_get "${STATUS_FILE}" "db_error")"
+STATUS_DB_IGNORED="$(ini_get "${STATUS_FILE}" "db_ignored")"
 
 
 ################################################################################
@@ -450,10 +454,14 @@ PERFORMANCE="${PERFORMANCE} 'Tmpwatch Deletions'=${STATUS_MSG_DEL};;;;"
 
 #### Additional Long output for Nagios >=3
 ADDITIONAL="Message: ${STATUS_MESSAGE}\n"
-ADDITIONAL="${ADDITIONAL}Logging:     ${STATUS_OPT_LOG}\n"
+ADDITIONAL="${ADDITIONAL}Logging: ${STATUS_OPT_LOG}\n"
 ADDITIONAL="${ADDITIONAL}Compression: ${STATUS_OPT_COM}\n"
-ADDITIONAL="${ADDITIONAL}Encryption:  ${STATUS_OPT_ENC}\n"
-ADDITIONAL="${ADDITIONAL}TmpWatch Del:${STATUS_OPT_DEL}\n"
+ADDITIONAL="${ADDITIONAL}Encryption: ${STATUS_OPT_ENC}\n"
+ADDITIONAL="${ADDITIONAL}TmpWatch Del: ${STATUS_OPT_DEL}\n"
+ADDITIONAL="${ADDITIONAL}DBs Dumped: ${STATUS_DB_DUMPED}\n"
+ADDITIONAL="${ADDITIONAL}DBs Ignored: ${STATUS_DB_IGNORED}\n"
+ADDITIONAL="${ADDITIONAL}DBs Error: ${STATUS_DB_ERROR}\n"
+
 
 
 #### Output

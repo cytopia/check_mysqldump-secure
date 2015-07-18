@@ -1,3 +1,11 @@
+Version 0.5
+-----------
+
+- [Enh]		Show list of dumped databases
+- [Enh]		Show failed of dumped databases
+- [Enh]		Show ignored of dumped databases
+
+
 Version 0.4
 -----------
 
