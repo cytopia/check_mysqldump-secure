@@ -52,3 +52,10 @@ This is only applicable to nagios >= 3
 ![Total](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_total_dbs.png)
 ![Ignored](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_ignored_dbs.png)
 ![Tmpwatch](https://raw.githubusercontent.com/cytopia/check_mysqldump-secure/master/doc/graph_tmpwatch_deletions.png)
+
+
+## Awesome
+
+Added by the following [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome) lists:
+
+* [awesome-nagios-plugins](https://github.com/cytopia/awesome-nagios-plugins)
