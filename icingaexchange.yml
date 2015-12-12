@@ -1,0 +1,19 @@
+name: check_mysqldump-secure
+description: "file:///README.md"
+url: "https://github.com/cytopia/check_mysqldump-secure"
+tags: Database, MySQL
+vendor: Linux
+target: Operating System
+type: Plugin
+license: MIT
+releases:
+  -
+    name: 0.5
+    description: "0.5 Release"
+    files:
+      -
+        name: check_mysqldump-secure
+        url: "file:///check_mysqldump-secure"
+        description: "Fifth release"
+        checksum: d7e831d106f17a5a5a60c1f479786e5f
+
