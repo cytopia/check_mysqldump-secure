@@ -328,7 +328,7 @@ fi
 STATUS_FILE="$(cat "${CHECK_LOGFILE}")"
 
 # Status file is valid?
-ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*missing\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*msg_del\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*= ^\s*db_dumped\s*= ^\s*db_error\s*= ^\s*db_ignored\s*="
+ALL_KEYS="^\s*success\s*= ^\s*lastbak\s*= ^\s*message\s*= ^\s*missing\s*= ^\s*msg_dbs\s*= ^\s*msg_ign\s*= ^\s*msg_err\s*= ^\s*msg_meg\s*= ^\s*msg_sec\s*= ^\s*msg_del\s*= ^\s*opt_log\s*= ^\s*opt_com\s*= ^\s*opt_enc\s*= ^\s*opt_del\s*= ^\s*del_time\s*= ^\s*db_dumped\s*= ^\s*db_error\s*= ^\s*db_ignored\s*="
 for w in $ALL_KEYS; do
 	if ! grep -E "$w" "${CHECK_LOGFILE}" > /dev/null 2>&1 ; then
 		echo "${CHECK_LOGFILE} is corrupt. Missing: \"${w}\""
@@ -344,6 +344,7 @@ STATUS_MISSING="$(ini_get "${STATUS_FILE}" "missing")"
 # Info Messages
 STATUS_MSG_DBS="$(ini_get "${STATUS_FILE}" "msg_dbs")"
 STATUS_MSG_IGN="$(ini_get "${STATUS_FILE}" "msg_ign")"
+STATUS_MSG_ERR="$(ini_get "${STATUS_FILE}" "msg_err")"
 STATUS_MSG_MEG="$(ini_get "${STATUS_FILE}" "msg_meg")"
 STATUS_MSG_SEC="$(ini_get "${STATUS_FILE}" "msg_sec")"
 STATUS_MSG_DEL="$(ini_get "${STATUS_FILE}" "msg_del")"
@@ -450,6 +451,7 @@ PERFORMANCE="${PERFORMANCE} 'Execution Time'=${STATUS_MSG_SEC}s;;;;"
 PERFORMANCE="${PERFORMANCE} 'Total Size'=$( round "$(mul ${STATUS_MSG_MEG} 1048576)" )B;;;;"
 PERFORMANCE="${PERFORMANCE} 'Dumped Databases'=${STATUS_MSG_DBS};;;;"
 PERFORMANCE="${PERFORMANCE} 'Ignored Databases'=${STATUS_MSG_IGN};;;;"
+PERFORMANCE="${PERFORMANCE} 'Failed Databases'=${STATUS_MSG_ERR};;;;"
 PERFORMANCE="${PERFORMANCE} 'Tmpwatch Deletions'=${STATUS_MSG_DEL};;;;"
 
 #### Additional Long output for Nagios >=3
@@ -466,17 +468,17 @@ ADDITIONAL="${ADDITIONAL}DBs Error: ${STATUS_DB_ERROR}\n"
 
 #### Output
 if [ "$STATUS_SUCCESS" = "0" ]; then
-	ERROR="${ERROR}$(printf "[OK]: Dumped %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[OK]: Dumped %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN + $STATUS_MSG_ERR)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 elif [ "$STATUS_SUCCESS" = "1" ]; then
 	if [ $ERRNO -lt $EXIT_ERR ]; then
 		ERRNO=$EXIT_WARN
 	fi
-	ERROR="${ERROR}$(printf "[Warn]: Dumped with warnings: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[Warn]: Dumped with warnings: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN + $STATUS_MSG_ERR)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 elif [ "$STATUS_SUCCESS" = "2" ]; then
-	ERROR="${ERROR}$(printf "[Err]: Dumped with errors: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[Err]: Dumped with errors: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN + $STATUS_MSG_ERR)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 	ERRNO=$EXIT_ERR
 else
-	ERROR="${ERROR}$(printf "[Unknown]: Dumped with unknown: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
+	ERROR="${ERROR}$(printf "[Unknown]: Dumped with unknown: %s/%s dbs (%sMB) (took: %ss) %s ago." "${STATUS_MSG_DBS}" "$(expr $STATUS_MSG_DBS + $STATUS_MSG_IGN + $STATUS_MSG_ERR)" "${STATUS_MSG_MEG}" "${STATUS_MSG_SEC}" "${hours_ago}")"
 	ERRNO=$EXIT_ERR
 fi
 

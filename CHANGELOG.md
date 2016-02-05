@@ -1,3 +1,13 @@
+Version 0.7 (unreleased)
+-----------
+
+
+Version 0.6
+-----------
+
+- [Fix]		Fixed return code for errors (only printed warnings)
+- [Enh]		Also show/count failed databases
+
 Version 0.5
 -----------
 
