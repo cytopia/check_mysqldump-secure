@@ -373,7 +373,7 @@ if ! isint $STATUS_LASTBAK; then
 	echo "Invalid value for \"lastbak\". Corrupt file: ${CHECK_LOGFILE}"
 	exit $EXIT_UNKNOWN
 fi
-if [ "$STATUS_OPT_LOG" != "0" ] && [ "$STATUS_OPT_LOG" != "1" ]; then
+if [ "$STATUS_OPT_LOG" != "0" ] && [ "$STATUS_OPT_LOG" != "1" ] && [ "$STATUS_OPT_LOG" != "2" ] && [ "$STATUS_OPT_LOG" != "3" ]; then
 	echo "Invalid value for \"opt_log\". Corrupt file: ${CHECK_LOGFILE}"
 	exit $EXIT_UNKNOWN
 fi
