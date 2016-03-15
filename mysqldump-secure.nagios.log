@@ -65,6 +65,9 @@ msg_dbs = 20
 ; How many databases have been skipped/ignored?
 msg_ign = 3
 
+; How many databases had errors
+msg_err = 3
+
 ; Total size of dumped databases in Megabytes
 msg_meg = 1025
 
@@ -93,5 +96,9 @@ db_dumped =
 db_ignored = 
 
 ; list of failed databases
-db_error
+db_error = 
 
+
+[mist]
+; What version of mysqldump-secure was used to create the backups
+version = 0.16
