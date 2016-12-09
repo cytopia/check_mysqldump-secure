@@ -8,6 +8,13 @@
 [![Type](https://img.shields.io/badge/type-%2Fbin%2Fsh-red.svg)](https://en.wikipedia.org/?title=Bourne_shell)
 [![License](https://poser.pugx.org/cytopia/check_mysqldump-secure/license)](http://opensource.org/licenses/MIT)
 
+---
+
+| [![Awesome-Nagios-Plugins](https://raw.githubusercontent.com/cytopia/awesome-nagios-plugins/master/doc/img/awesome-nagios.png)](https://github.com/cytopia/awesome-nagios-plugins) | Find more [awesome nagios plugins](https://github.com/cytopia/awesome-nagios-plugins) |
+|---|---|
+
+---
+
 Nagios Plugin to monitor the state of MySQL database backups. The following states are reported:
 * Did every database dump correctly?
 * Is the last dump within the specified time cycle?
