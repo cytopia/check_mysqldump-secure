@@ -15,9 +15,9 @@
 ################################################################################
 INFO_AUTHOR="Patrick Plocke <patrick@plocke.de>"
 INFO_GPGKEY="0x28BF179F"
-INFO_DATE="2015-07-08"
+INFO_DATE="2016-12-12"
 INFO_LICENSE="MIT"
-INFO_VERSION="0.5"
+INFO_VERSION="0.8"
 
 # Check for performance data:
 # http://nagios.sourceforge.net/docs/3_0/pluginapi.html

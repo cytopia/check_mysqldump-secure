@@ -1,5 +1,7 @@
 # check_mysqldump-secure
 
+Nagios Plugin to monitor the state of MySQL database backups: Success, last backup, encryped, compressed, etc.
+
 [![Build Status](https://travis-ci.org/cytopia/check_mysqldump-secure.svg?branch=master)](https://travis-ci.org/cytopia/check_mysqldump-secure)
 [![Latest Stable Version](https://poser.pugx.org/cytopia/check_mysqldump-secure/v/stable)](https://packagist.org/packages/cytopia/check_mysqldump-secure) 
 [![Latest Unstable Version](https://poser.pugx.org/cytopia/check_mysqldump-secure/v/unstable)](https://packagist.org/packages/cytopia/check_mysqldump-secure) 
@@ -10,12 +12,15 @@
 
 ---
 
-| [![Awesome-Nagios-Plugins](https://raw.githubusercontent.com/cytopia/awesome-nagios-plugins/master/doc/img/awesome-nagios.png)](https://github.com/cytopia/awesome-nagios-plugins) | Find more [awesome nagios plugins](https://github.com/cytopia/awesome-nagios-plugins) |
+| [![Awesome-Nagios-Plugins](https://raw.githubusercontent.com/cytopia/awesome-nagios-plugins/master/doc/img/awesome-nagios.png)](https://github.com/cytopia/awesome-nagios-plugins) | Find more plugins at [Awesome Nagios](https://github.com/cytopia/awesome-nagios-plugins) |
 |---|---|
+| [![Icinga Exchange](https://raw.githubusercontent.com/cytopia/awesome-nagios-plugins/master/doc/img/icinga.png)](https://exchange.icinga.com/cytopia) | **Find more plugins at [Icinga Exchange](https://exchange.icinga.com/cytopia)** |
+| [![Nagios Exchange](https://raw.githubusercontent.com/cytopia/awesome-nagios-plugins/master/doc/img/nagios.png)](https://exchange.nagios.org/directory/Owner/cytopia/1) | **Find more plugins at [Nagios Exchange](https://exchange.nagios.org/directory/Owner/cytopia/1)** |
 
 ---
 
-Nagios Plugin to monitor the state of MySQL database backups. The following states are reported:
+**Features**:
+
 * Did every database dump correctly?
 * Is the last dump within the specified time cycle?
 * If encryption is required, was the dump encryted?
@@ -23,7 +28,8 @@ Nagios Plugin to monitor the state of MySQL database backups. The following stat
 * If logging is required, was the dump logged?
 
 
-Additional information is displayed. Such as:
+** Additional information is displayed. Such as:**
+
 * How many databases dumped
 * How many databases skipped
 * How long did it take to dump everything
