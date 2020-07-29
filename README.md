@@ -23,7 +23,7 @@ Nagios Plugin to monitor the state of MySQL database backups: Success, last back
 
 * Did every database dump correctly?
 * Is the last dump within the specified time cycle?
-* If encryption is required, was the dump encryted?
+* If encryption is required, was the dump encrypted?
 * If compression is required, was the dump compressed?
 * If logging is required, was the dump logged?
 
